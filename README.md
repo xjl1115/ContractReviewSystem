@@ -202,46 +202,84 @@ npm run dev
 
 ```
 合同审查agent/
-├── frontend/                    # Vue 3 前端项目
+├── .trae/
+│   ├── rules/                         # Trae IDE 工作区规则
+│   │   ├── front.md                  # 前端构建规则
+│   │   └── github.md                 # GitHub 提交规则
+│   └── skills/
+│       └── project-architecture/     # 项目架构 Skill
+│           └── SKILL.md
+│
+├── frontend/                          # Vue 3 前端项目
 │   ├── src/
-│   │   ├── api/               # API 接口
-│   │   ├── assets/            # 静态资源
-│   │   ├── components/        # 组件
-│   │   ├── router/            # 路由配置
-│   │   ├── store/             # Pinia 状态管理
-│   │   └── views/             # 页面视图
+│   │   ├── api/                      # API 接口层
+│   │   ├── components/               # 通用组件（ChatBot、预览等）
+│   │   ├── composables/              # 组合式函数
+│   │   ├── layouts/                  # 布局组件
+│   │   ├── router/                   # 路由配置
+│   │   ├── stores/                   # Pinia 状态管理
+│   │   ├── styles/                   # 全局样式
+│   │   ├── utils/                    # 工具函数
+│   │   └── views/                    # 页面视图（10+ 页面）
 │   ├── package.json
 │   └── vite.config.js
 │
-├── ContractReview/             # SpringBoot 后端项目
+├── ContractReview/                    # SpringBoot 后端项目（Java 25）
 │   ├── src/main/java/com/example/contractreview/
-│   │   ├── config/           # 配置类
-│   │   ├── controller/       # 控制器
-│   │   ├── service/          # 业务服务
-│   │   ├── mapper/           # 数据访问
-│   │   ├── entity/           # 实体类
-│   │   └── utils/            # 工具类
-│   ├── src/main/resources/
-│   │   ├── application.yml   # 主配置文件
-│   │   └── mapper/           # MyBatis XML
+│   │   ├── config/                   # 配置类（CORS、MyBatis、拦截器）
+│   │   ├── controller/               # REST 控制器（10 个）
+│   │   ├── service/                  # 业务服务层
+│   │   ├── mapper/                   # MyBatis Mapper（10 个）
+│   │   ├── model/                    # 数据模型（entity/dto/vo）
+│   │   ├── enums/                    # 枚举（20+）
+│   │   ├── common/                   # 通用（异常处理、统一响应）
+│   │   ├── client/                   # HTTP 客户端（调用 Python 后端）
+│   │   └── constant/                 # 常量定义
+│   ├── src/main/resources/mapper/    # MyBatis XML 映射
 │   └── pom.xml
 │
-├── 合同审查/                   # Python AI 服务
+├── 合同审查/                          # Python AI 服务（FastAPI）
 │   ├── app/
-│   │   ├── api/              # API 路由
-│   │   ├── core/             # 核心配置
-│   │   ├── models/           # 数据模型
-│   │   ├── services/         # 业务逻辑
-│   │   └── utils/            # 工具函数
+│   │   ├── agent/                    # LangGraph Agent 层
+│   │   │   ├── tools.py             # 12 个 @tool 工具函数
+│   │   │   ├── prompts.py           # System Prompt
+│   │   │   ├── create_redis_checkpoint.py  # Redis Checkpointer
+│   │   │   └── ...
+│   │   ├── api/v1/endpoints/         # FastAPI 路由（chat、review、laws）
+│   │   ├── core/                     # 核心配置（config、database）
+│   │   ├── llm/                      # LLM 层
+│   │   │   ├── llm_factory.py       # 统一 LLM 工厂
+│   │   │   ├── tongyi_llm.py        # 通义千问封装
+│   │   │   ├── review_chains.py     # 审查链
+│   │   │   └── ...
+│   │   ├── rag/                      # RAG 检索增强生成
+│   │   │   ├── embeddings.py        # 嵌入模型
+│   │   │   ├── vector_store.py      # 向量存储
+│   │   │   ├── retriever.py         # 检索器
+│   │   │   └── ...
+│   │   ├── services/                 # 业务服务（审查工作线程）
+│   │   ├── utils/                    # 工具模块（上下文截断、中断管理）
+│   │   ├── schemas/                  # 数据模型
+│   │   └── main.py                   # FastAPI 入口
+│   ├── model/                        # SQLAlchemy ORM 模型
 │   ├── requirements.txt
-│   └── main.py
+│   └── settings.py
 │
-├── docs/                      # 项目文档
+├── nginx-1.28.0/                     # Nginx 反向代理
+│   ├── conf/nginx.conf              # 主配置（代理、SSE、大文件上传）
+│   └── html/                         # 前端构建产物（dist）
+│
+├── 分析文档/                          # 项目分析文档
+│   ├── temperature_总结.md           # Temperature 配置总结
+│   ├── token消耗优化策略.md           # Token 优化策略
+│   └── agent效果评估体系.md            # Agent 效果评估体系
+│
+├── docs/                             # 项目文档
 │   ├── API文档.md
 │   ├── 部署指南.md
 │   └── 架构设计.md
 │
-└── README.md                  # 本文档
+└── README.md                         # 本文档
 ```
 
 ## 🔧 配置说明
@@ -987,6 +1025,10 @@ curl http://localhost:8001/api/v1/health/db
 | [FastAPI优化建议.md](FastAPI优化建议.md) | Python 服务优化指南 |
 | [项目优化建议.md](项目优化建议.md) | 整体优化建议 |
 | [Cloudflare部署指南.md](Cloudflare部署指南.md) | 云部署详细指南 |
+| [temperature_总结.md](temperature_总结.md) | LLM Temperature 配置分析与总结 |
+| [token消耗优化策略.md](token消耗优化策略.md) | Token 消耗分析与优化方案 |
+| [agent效果评估体系.md](agent效果评估体系.md) | Agent 效果多维评估体系 |
+| [project-architecture Skill](.trae/skills/project-architecture/SKILL.md) | 项目架构开发 Skill |
 
 ## 🤝 贡献指南
 

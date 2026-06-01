@@ -202,46 +202,84 @@ npm run dev
 
 ```
 contract-review-agent/
-├── frontend/                    # Vue 3 Frontend Project
+├── .trae/
+│   ├── rules/                         # Trae IDE workspace rules
+│   │   ├── front.md                  # Frontend build rules
+│   │   └── github.md                 # GitHub commit rules
+│   └── skills/
+│       └── project-architecture/     # Project architecture Skill
+│           └── SKILL.md
+│
+├── frontend/                          # Vue 3 Frontend Project
 │   ├── src/
-│   │   ├── api/               # API interfaces
-│   │   ├── assets/            # Static assets
-│   │   ├── components/        # Components
-│   │   ├── router/            # Routing configuration
-│   │   ├── store/             # Pinia state management
-│   │   └── views/             # Page views
+│   │   ├── api/                      # API interfaces
+│   │   ├── components/               # Shared components (ChatBot, preview)
+│   │   ├── composables/              # Composable functions
+│   │   ├── layouts/                  # Layout components
+│   │   ├── router/                   # Routing configuration
+│   │   ├── stores/                   # Pinia state management
+│   │   ├── styles/                   # Global styles
+│   │   ├── utils/                    # Utility functions
+│   │   └── views/                    # Page views (10+ pages)
 │   ├── package.json
 │   └── vite.config.js
 │
-├── ContractReview/             # SpringBoot Backend Project
+├── ContractReview/                    # SpringBoot Backend Project (Java 25)
 │   ├── src/main/java/com/example/contractreview/
-│   │   ├── config/           # Configuration classes
-│   │   ├── controller/       # Controllers
-│   │   ├── service/          # Business services
-│   │   ├── mapper/           # Data access
-│   │   ├── entity/           # Entity classes
-│   │   └── utils/            # Utility classes
-│   ├── src/main/resources/
-│   │   ├── application.yml   # Main configuration file
-│   │   └── mapper/           # MyBatis XML
+│   │   ├── config/                   # Configuration classes (CORS, MyBatis, interceptors)
+│   │   ├── controller/               # REST controllers (10)
+│   │   ├── service/                  # Business services
+│   │   ├── mapper/                   # MyBatis Mappers (10)
+│   │   ├── model/                    # Data models (entity/dto/vo)
+│   │   ├── enums/                    # Enumerations (20+)
+│   │   ├── common/                   # Commons (exception handling, unified response)
+│   │   ├── client/                   # HTTP clients (calling Python backend)
+│   │   └── constant/                 # Constants
+│   ├── src/main/resources/mapper/    # MyBatis XML mappings
 │   └── pom.xml
 │
-├── 合同审查/                   # Python AI Service
+├── 合同审查/                          # Python AI Service (FastAPI)
 │   ├── app/
-│   │   ├── api/              # API routes
-│   │   ├── core/             # Core configuration
-│   │   ├── models/           # Data models
-│   │   ├── services/         # Business logic
-│   │   └── utils/            # Utility functions
+│   │   ├── agent/                    # LangGraph Agent layer
+│   │   │   ├── tools.py             # 12 @tool functions
+│   │   │   ├── prompts.py           # System Prompts
+│   │   │   ├── create_redis_checkpoint.py  # Redis Checkpointer
+│   │   │   └── ...
+│   │   ├── api/v1/endpoints/         # FastAPI routes (chat, review, laws)
+│   │   ├── core/                     # Core configuration (config, database)
+│   │   ├── llm/                      # LLM layer
+│   │   │   ├── llm_factory.py       # Unified LLM factory
+│   │   │   ├── tongyi_llm.py        # Tongyi Qianwen wrapper
+│   │   │   ├── review_chains.py     # Review chains
+│   │   │   └── ...
+│   │   ├── rag/                      # RAG retrieval augmented generation
+│   │   │   ├── embeddings.py        # Embedding models
+│   │   │   ├── vector_store.py      # Vector store
+│   │   │   ├── retriever.py         # Retriever
+│   │   │   └── ...
+│   │   ├── services/                 # Business services (review worker)
+│   │   ├── utils/                    # Utilities (context truncation, conversation stopper)
+│   │   ├── schemas/                  # Data schemas
+│   │   └── main.py                   # FastAPI entry point
+│   ├── model/                        # SQLAlchemy ORM models
 │   ├── requirements.txt
-│   └── main.py
+│   └── settings.py
 │
-├── docs/                      # Project documentation
+├── nginx-1.28.0/                     # Nginx reverse proxy
+│   ├── conf/nginx.conf              # Main config (proxy, SSE, file upload)
+│   └── html/                         # Frontend build output (dist)
+│
+├── 分析文档/                          # Analysis documents
+│   ├── temperature_总结.md           # Temperature configuration summary
+│   ├── token消耗优化策略.md           # Token optimization strategies
+│   └── agent效果评估体系.md            # Agent evaluation system
+│
+├── docs/                             # Project documentation
 │   ├── API文档.md
 │   ├── 部署指南.md
 │   └── 架构设计.md
 │
-└── README.md                  # This document
+└── README_ENGLISH.md                 # This document
 ```
 
 ## 🔧 Configuration
@@ -781,6 +819,10 @@ curl http://localhost:8001/api/v1/health/db
 | [FastAPI优化建议.md](FastAPI优化建议.md) | Python service optimization |
 | [项目优化建议.md](项目优化建议.md) | Overall optimization suggestions |
 | [Cloudflare部署指南.md](Cloudflare部署指南.md) | Cloud deployment guide |
+| [temperature_总结.md](temperature_总结.md) | LLM Temperature configuration analysis |
+| [token消耗优化策略.md](token消耗优化策略.md) | Token consumption analysis and optimization |
+| [agent效果评估体系.md](agent效果评估体系.md) | Agent multi-dimensional evaluation system |
+| [project-architecture Skill](.trae/skills/project-architecture/SKILL.md) | Project architecture dev Skill |
 
 ## 🤝 Contributing
 
