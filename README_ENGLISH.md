@@ -647,16 +647,19 @@ Detailed API documentation in [后端API开发文档.md](后端API开发文档.m
                                                                 │
                                                                 ▼
 ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐
-│ Generate│ <- │ Save    │ <- │ Associate│ <- │ Evaluate│ <- │ Output  │
-│ Report  │    │ Result  │    │ Laws    │    │ Level   │    │ Risk    │
+│ Generate│ <- │ Save    │ <- │ Evaluate│ <- │ Associate│ <- │ Output  │
+│ Report  │    │ Result  │    │ Level   │    │ Laws    │    │ Risk    │
 └─────────┘    └─────────┘    └─────────┘    └─────────┘    └─────────┘
 ```
 
 1. **Document Parsing**: Extract text content from PDF/DOCX contracts
 2. **Chunking**: Split contract content into appropriately sized chunks
-3. **Vector Retrieval**: Retrieve relevant legal articles from knowledge base
-4. **Risk Analysis**: AI model analyzes contract clause risks
-5. **Report Generation**: Generate structured review report
+3. **Vector Retrieval**: Retrieve relevant legal articles from knowledge base (RAG)
+4. **Risk Analysis**: AI model analyzes contract clause risks with legal basis
+5. **Evaluate Level**: Assess risk severity level (High/Medium/Low)
+6. **Associate Laws**: Associate retrieved legal articles with risk items
+7. **Save Results**: Save risk items to database
+8. **Report Generation**: Generate structured review report
 
 ### Supported AI Models
 

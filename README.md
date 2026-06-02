@@ -74,16 +74,16 @@
 
 ### 技术栈
 
-| 组件 | 技术栈 | 说明 |
-|------|--------|------|
-| **前端** | Vue 3 + Element Plus + Vite + Pinia | 现代化单页应用，响应式设计 |
-| **API 网关** | Spring Boot 4.0.5 + MyBatis + MySQL + Redis | 业务逻辑处理、数据持久化 |
-| **AI 服务** | FastAPI + LangChain + DashScope + RAG | AI 模型推理、向量检索 |
-| **数据库** | MySQL 8.0 + Redis 7.0 | 关系数据 + 缓存/会话管理 |
-| **文件存储** | 本地存储 / 阿里云 OSS | 合同文档存储 |
-| **向量数据库** | Chroma / FAISS | 法律知识库向量检索 |
-| **数据库迁移** | Alembic | SQLAlchemy 数据库版本管理 |
-| **服务监控** | 自定义健康检查 | /ready 接口、连接池监控 |
+| 组件         | 技术栈                                         | 说明                 |
+| ---------- | ------------------------------------------- | ------------------ |
+| **前端**     | Vue 3 + Element Plus + Vite + Pinia         | 现代化单页应用，响应式设计      |
+| **API 网关** | Spring Boot 4.0.5 + MyBatis + MySQL + Redis | 业务逻辑处理、数据持久化       |
+| **AI 服务**  | FastAPI + LangChain + DashScope + RAG       | AI 模型推理、向量检索       |
+| **数据库**    | MySQL 8.0 + Redis 7.0                       | 关系数据 + 缓存/会话管理     |
+| **文件存储**   | 本地存储 / 阿里云 OSS                              | 合同文档存储             |
+| **向量数据库**  | Chroma / FAISS                              | 法律知识库向量检索          |
+| **数据库迁移**  | Alembic                                     | SQLAlchemy 数据库版本管理 |
+| **服务监控**   | 自定义健康检查                                     | /ready 接口、连接池监控    |
 
 ## 🚀 快速开始
 
@@ -127,7 +127,7 @@ mvn clean package -DskipTests
 java -jar target/ContractReview-0.0.1-SNAPSHOT.jar
 ```
 
-服务启动后访问：http://localhost:8080/api
+服务启动后访问：<http://localhost:8080/api>
 
 ### 4. AI 服务启动 (FastAPI)
 
@@ -152,7 +152,7 @@ cp .env.example .env
 python -m uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
 ```
 
-服务启动后访问：http://localhost:8001/docs
+服务启动后访问：<http://localhost:8001/docs>
 
 #### Alembic 数据库迁移（可选）
 
@@ -192,11 +192,11 @@ npm run dev
 
 ### 6. 访问应用
 
-- **前端界面**: http://localhost:3000
-- **SpringBoot API**: http://localhost:8080/api
-- **FastAPI API**: http://localhost:8001/api/v1
-- **API 文档**: http://localhost:8080/swagger-ui.html
-- **健康检查**: http://localhost:8001/ready (服务就绪状态)
+- **前端界面**: <http://localhost:3000>
+- **SpringBoot API**: <http://localhost:8080/api>
+- **FastAPI API**: <http://localhost:8001/api/v1>
+- **API 文档**: <http://localhost:8080/swagger-ui.html>
+- **健康检查**: <http://localhost:8001/ready> (服务就绪状态)
 
 ## 📁 项目结构
 
@@ -387,19 +387,19 @@ VITE_AI_API_URL=http://localhost:8001/api/v1
 
 ### 核心表结构
 
-| 表名 | 说明 |
-|------|------|
-| `sys_user` | 用户信息表 |
-| `contract` | 合同信息表 |
-| `review_task` | 审查任务表 |
-| `risk_item` | 风险项表 |
-| `report` | 报告信息表 |
-| `law_regulation` | 法律法规表 |
-| `law_article` | 法条表 |
-| `contract_template` | 合同模板表 |
-| `sys_operation_log` | 操作日志表 |
+| 表名                     | 说明    |
+| ---------------------- | ----- |
+| `sys_user`             | 用户信息表 |
+| `contract`             | 合同信息表 |
+| `review_task`          | 审查任务表 |
+| `risk_item`            | 风险项表  |
+| `report`               | 报告信息表 |
+| `law_regulation`       | 法律法规表 |
+| `law_article`          | 法条表   |
+| `contract_template`    | 合同模板表 |
+| `sys_operation_log`    | 操作日志表 |
 | `chatbot_conversation` | 对话记录表 |
-| `notification` | 通知消息表 |
+| `notification`         | 通知消息表 |
 
 详细数据库设计见 [后端开发文档.md](后端开发文档.md)
 
@@ -411,26 +411,26 @@ VITE_AI_API_URL=http://localhost:8001/api/v1
 
 #### 必需的环境变量
 
-| 类别 | 变量名 | 说明 | 示例 |
-|------|--------|------|------|
-| **数据库** | `DB_URL` | MySQL连接URL | `jdbc:mysql://mysql:3306/contract_review?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai` |
-| | `DB_USERNAME` | 数据库用户名 | `contract_user` |
-| | `DB_PASSWORD` | 数据库密码 | `your-secure-password` |
-| **Redis** | `REDIS_HOST` | Redis服务器地址 | `redis` |
-| | `REDIS_PORT` | Redis端口 | `6379` |
-| | `REDIS_PASSWORD` | Redis密码 | `your-redis-password` |
-| | `REDIS_DATABASE` | Redis数据库索引 | `0` |
-| **JWT** | `JWT_SECRET` | JWT签名密钥（至少32位） | `your-256-bit-secret-key-here-must-be-long-enough` |
-| **邮件** | `MAIL_HOST` | SMTP服务器地址 | `smtp.qq.com` |
-| | `MAIL_PORT` | SMTP端口 | `465` |
-| | `MAIL_USERNAME` | 邮箱账号 | `your-email@qq.com` |
-| | `MAIL_PASSWORD` | 邮箱授权码/密码 | `your-app-password` |
-| **FastAPI** | `FASTAPI_BASE_URL` | FastAPI服务地址 | `http://fastapi:8001` |
-| **OSS** | `OSS_ENDPOINT` | OSS服务端点 | `oss-cn-beijing.aliyuncs.com` |
-| | `OSS_BUCKET` | OSS存储桶名称 | `your-bucket-name` |
-| | `OSS_REGION` | OSS区域 | `cn-beijing` |
-| | `OSS_ACCESS_KEY_ID` | 阿里云AccessKey ID | `your-access-key-id` |
-| | `OSS_ACCESS_KEY_SECRET` | 阿里云AccessKey Secret | `your-access-key-secret` |
+| 类别          | 变量名                     | 说明                  | 示例                                                                                                                         |
+| ----------- | ----------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **数据库**     | `DB_URL`                | MySQL连接URL          | `jdbc:mysql://mysql:3306/contract_review?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai` |
+| <br />      | `DB_USERNAME`           | 数据库用户名              | `contract_user`                                                                                                            |
+| <br />      | `DB_PASSWORD`           | 数据库密码               | `your-secure-password`                                                                                                     |
+| **Redis**   | `REDIS_HOST`            | Redis服务器地址          | `redis`                                                                                                                    |
+| <br />      | `REDIS_PORT`            | Redis端口             | `6379`                                                                                                                     |
+| <br />      | `REDIS_PASSWORD`        | Redis密码             | `your-redis-password`                                                                                                      |
+| <br />      | `REDIS_DATABASE`        | Redis数据库索引          | `0`                                                                                                                        |
+| **JWT**     | `JWT_SECRET`            | JWT签名密钥（至少32位）      | `your-256-bit-secret-key-here-must-be-long-enough`                                                                         |
+| **邮件**      | `MAIL_HOST`             | SMTP服务器地址           | `smtp.qq.com`                                                                                                              |
+| <br />      | `MAIL_PORT`             | SMTP端口              | `465`                                                                                                                      |
+| <br />      | `MAIL_USERNAME`         | 邮箱账号                | `your-email@qq.com`                                                                                                        |
+| <br />      | `MAIL_PASSWORD`         | 邮箱授权码/密码            | `your-app-password`                                                                                                        |
+| **FastAPI** | `FASTAPI_BASE_URL`      | FastAPI服务地址         | `http://fastapi:8001`                                                                                                      |
+| **OSS**     | `OSS_ENDPOINT`          | OSS服务端点             | `oss-cn-beijing.aliyuncs.com`                                                                                              |
+| <br />      | `OSS_BUCKET`            | OSS存储桶名称            | `your-bucket-name`                                                                                                         |
+| <br />      | `OSS_REGION`            | OSS区域               | `cn-beijing`                                                                                                               |
+| <br />      | `OSS_ACCESS_KEY_ID`     | 阿里云AccessKey ID     | `your-access-key-id`                                                                                                       |
+| <br />      | `OSS_ACCESS_KEY_SECRET` | 阿里云AccessKey Secret | `your-access-key-secret`                                                                                                   |
 
 ### 方式一：Docker Compose 部署（推荐）
 
@@ -778,6 +778,7 @@ sudo journalctl -u contract-review -f
 ### API 接口规范
 
 - **统一响应格式**:
+
 ```json
 {
   "code": 200,
@@ -819,25 +820,25 @@ ci: CI/CD 相关改动
 
 ### 主要 API 端点
 
-| 方法 | 端点 | 说明 |
-|------|------|------|
-| POST | `/api/auth/login` | 用户登录 |
-| POST | `/api/auth/register` | 用户注册 |
-| POST | `/api/auth/logout` | 用户登出 |
-| GET | `/api/auth/captcha` | 获取验证码 |
-| POST | `/api/contract/upload` | 合同上传 |
-| GET | `/api/contract/list` | 合同列表 |
-| GET | `/api/contract/{id}` | 合同详情 |
-| POST | `/api/contract/{id}/delete` | 删除合同 |
-| POST | `/api/review/start` | 发起审查 |
-| GET | `/api/review/{id}/progress` | 获取审查进度 (SSE) |
-| GET | `/api/review/{id}/result` | 获取审查结果 |
-| GET | `/api/review/{id}/risks` | 获取风险列表 |
-| POST | `/api/review/{id}/cancel` | 取消审查 |
-| GET | `/api/knowledge/laws` | 查询法律法规 |
-| GET | `/api/knowledge/laws/{id}` | 法规详情 |
-| POST | `/api/chat/send` | 发送聊天消息 |
-| GET | `/api/chat/history` | 获取对话历史 |
+| 方法   | 端点                          | 说明           |
+| ---- | --------------------------- | ------------ |
+| POST | `/api/auth/login`           | 用户登录         |
+| POST | `/api/auth/register`        | 用户注册         |
+| POST | `/api/auth/logout`          | 用户登出         |
+| GET  | `/api/auth/captcha`         | 获取验证码        |
+| POST | `/api/contract/upload`      | 合同上传         |
+| GET  | `/api/contract/list`        | 合同列表         |
+| GET  | `/api/contract/{id}`        | 合同详情         |
+| POST | `/api/contract/{id}/delete` | 删除合同         |
+| POST | `/api/review/start`         | 发起审查         |
+| GET  | `/api/review/{id}/progress` | 获取审查进度 (SSE) |
+| GET  | `/api/review/{id}/result`   | 获取审查结果       |
+| GET  | `/api/review/{id}/risks`    | 获取风险列表       |
+| POST | `/api/review/{id}/cancel`   | 取消审查         |
+| GET  | `/api/knowledge/laws`       | 查询法律法规       |
+| GET  | `/api/knowledge/laws/{id}`  | 法规详情         |
+| POST | `/api/chat/send`            | 发送聊天消息       |
+| GET  | `/api/chat/history`         | 获取对话历史       |
 
 详细 API 文档见 [后端API开发文档.md](后端API开发文档.md)
 
@@ -853,35 +854,38 @@ ci: CI/CD 相关改动
                                                                 │
                                                                 ▼
 ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐
-│  生成   │ <- │  保存   │ <- │  关联   │ <- │  评估   │ <- │  输出   │
-│  报告   │    │  结果   │    │  法规   │    │  等级   │    │  风险   │
+│  生成   │ <- │  保存   │ <- │  评估   │ <- │  关联   │ <- │  输出   │
+│  报告   │    │  结果   │    │  等级   │    │  法规   │    │  风险   │
 └─────────┘    └─────────┘    └─────────┘    └─────────┘    └─────────┘
 ```
 
 1. **文档解析**: 提取 PDF/DOCX 合同文本内容
 2. **分块处理**: 将合同内容分割为适当大小的块
-3. **向量检索**: 从法律知识库检索相关法条
-4. **风险分析**: AI 模型分析合同条款风险
-5. **报告生成**: 生成结构化审查报告
+3. **向量检索**: 从法律知识库检索相关法条（RAG）
+4. **风险分析**: AI 模型结合法条分析合同条款风险
+5. **评估等级**: 根据风险严重程度评估风险等级（高/中/低）
+6. **关联法规**: 将检索到的法条与风险项关联
+7. **保存结果**: 将风险项保存到数据库
+8. **报告生成**: 生成结构化审查报告
 
 ### 支持的 AI 模型
 
-| 提供商 | 模型 | 说明 |
-|--------|------|------|
-| **通义千问** | `qwen3.6-flash` | 默认模型，速度快 |
-| **通义千问** | `qwen-max` | 能力强，适合复杂分析 |
-| **通义千问** | `qwen-plus` | 平衡性能和成本 |
-| **DeepSeek** | `deepseek-v3` | 深度推理 |
-| **DeepSeek** | `deepseek-r1` | 推理增强版 |
-| **OpenAI** | `gpt-4` | 国际版 |
-| **OpenAI** | `gpt-3.5-turbo` | 性价比高 |
-| **本地模型** | `Qwen/WebWorld-8B` | 私有化部署 |
+| 提供商          | 模型                 | 说明         |
+| ------------ | ------------------ | ---------- |
+| **通义千问**     | `qwen3.6-flash`    | 默认模型，速度快   |
+| **通义千问**     | `qwen-max`         | 能力强，适合复杂分析 |
+| **通义千问**     | `qwen-plus`        | 平衡性能和成本    |
+| **DeepSeek** | `deepseek-v3`      | 深度推理       |
+| **DeepSeek** | `deepseek-r1`      | 推理增强版      |
+| **OpenAI**   | `gpt-4`            | 国际版        |
+| **OpenAI**   | `gpt-3.5-turbo`    | 性价比高       |
+| **本地模型**     | `Qwen/WebWorld-8B` | 私有化部署      |
 
 ### RAG 知识库
 
 - **向量模型**: `BAAI/bge-small-zh-v1.5`
 - **向量数据库**: Chroma / FAISS
-- **知识来源**: 
+- **知识来源**:
   - 中国法律法规
   - 司法解释
   - 合同范本
@@ -893,14 +897,15 @@ ci: CI/CD 相关改动
 
 FastAPI 服务启动时自动预热以下资源，减少首次请求延迟：
 
-| 预热资源 | 说明 | 状态检查 |
-|----------|------|----------|
-| **Embedding 模型** | 文本向量化模型预加载 | `/ready` 接口 |
-| **向量数据库** | Chroma/FAISS 索引加载 | `/ready` 接口 |
-| **法律文档检索器** | RAG 检索器初始化 | `/ready` 接口 |
-| **LLM 链** | 风险分析链、合规检查链 | `/ready` 接口 |
+| 预热资源             | 说明                | 状态检查        |
+| ---------------- | ----------------- | ----------- |
+| **Embedding 模型** | 文本向量化模型预加载        | `/ready` 接口 |
+| **向量数据库**        | Chroma/FAISS 索引加载 | `/ready` 接口 |
+| **法律文档检索器**      | RAG 检索器初始化        | `/ready` 接口 |
+| **LLM 链**        | 风险分析链、合规检查链       | `/ready` 接口 |
 
 **健康检查接口**:
+
 ```bash
 # 检查服务就绪状态
 curl http://localhost:8001/ready
@@ -1017,18 +1022,18 @@ curl http://localhost:8001/api/v1/health/db
 
 ## 📝 相关文档
 
-| 文档 | 说明 |
-|------|------|
-| [ARCHITECTURE.md](ARCHITECTURE.md) | 系统架构详细说明 |
-| [后端开发文档.md](后端开发文档.md) | 后端详细设计文档 |
-| [后端API开发文档.md](后端API开发文档.md) | API 接口规范文档 |
-| [FastAPI优化建议.md](FastAPI优化建议.md) | Python 服务优化指南 |
-| [项目优化建议.md](项目优化建议.md) | 整体优化建议 |
-| [Cloudflare部署指南.md](Cloudflare部署指南.md) | 云部署详细指南 |
-| [temperature_总结.md](temperature_总结.md) | LLM Temperature 配置分析与总结 |
-| [token消耗优化策略.md](token消耗优化策略.md) | Token 消耗分析与优化方案 |
-| [agent效果评估体系.md](agent效果评估体系.md) | Agent 效果多维评估体系 |
-| [project-architecture Skill](.trae/skills/project-architecture/SKILL.md) | 项目架构开发 Skill |
+| 文档                                                                       | 说明                      |
+| ------------------------------------------------------------------------ | ----------------------- |
+| [ARCHITECTURE.md](ARCHITECTURE.md)                                       | 系统架构详细说明                |
+| [后端开发文档.md](后端开发文档.md)                                                   | 后端详细设计文档                |
+| [后端API开发文档.md](后端API开发文档.md)                                             | API 接口规范文档              |
+| [FastAPI优化建议.md](FastAPI优化建议.md)                                         | Python 服务优化指南           |
+| [项目优化建议.md](项目优化建议.md)                                                   | 整体优化建议                  |
+| [Cloudflare部署指南.md](Cloudflare部署指南.md)                                   | 云部署详细指南                 |
+| [temperature\_总结.md](temperature_总结.md)                                  | LLM Temperature 配置分析与总结 |
+| [token消耗优化策略.md](token消耗优化策略.md)                                         | Token 消耗分析与优化方案         |
+| [agent效果评估体系.md](agent效果评估体系.md)                                         | Agent 效果多维评估体系          |
+| [project-architecture Skill](.trae/skills/project-architecture/SKILL.md) | 项目架构开发 Skill            |
 
 ## 🤝 贡献指南
 
@@ -1064,7 +1069,7 @@ black app/
 
 - **项目维护者**: xjl
 - **问题反馈**: [GitHub Issues](https://github.com/xjl20041115/ContractReview/issues)
-- **邮箱**: xjl20041115@126.com
+- **邮箱**: <xjl20041115@126.com>
 
 ## 🙏 致谢
 
@@ -1077,6 +1082,6 @@ black app/
 - [通义千问](https://tongyi.aliyun.com/)
 - [Element Plus](https://element-plus.org/)
 
----
+***
 
 **智能合同审查助手** - 让合同审查更智能、更高效！
