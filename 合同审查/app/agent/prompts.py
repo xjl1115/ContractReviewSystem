@@ -104,58 +104,6 @@ def create_chatbot_prompt() -> ChatPromptTemplate:
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
 
-# 工具使用提示 - 指导 Agent 何时使用工具
-TOOL_USAGE_GUIDE = {
-    "search_contract_knowledge": {
-        "when_to_use": "用户询问法律概念、术语解释或一般性法律规定",
-        "examples": ["什么是违约金？", "试用期最长多久？", "社保必须交吗？"],
-    },
-    "review_contract": {
-        "when_to_use": "用户想分析合同风险、给合同评分或启动正式审查",
-        "examples": ["分析44号合同", "给合同评分", "审查合同", "检查合同风险"],
-    },
-    "check_contract_exists": {
-        "when_to_use": "用户只提供合同ID或名称，需要先确认合同是否存在",
-        "examples": ["44号合同存在吗", "查找国湖劳务协议"],
-    },
-    "get_law_reference": {
-        "when_to_use": "用户询问具体法律条文内容",
-        "examples": ["劳动合同法第十条", "民法典合同编第几条", "劳动法怎么规定的"],
-    },
-    "get_contract_list": {
-        "when_to_use": "用户想查看系统中的所有合同",
-        "examples": ["查看所有合同", "列出我的合同", "有哪些合同"],
-    },
-    "get_review_list": {
-        "when_to_use": "用户想查看审查任务列表",
-        "examples": ["查看审查列表", "有哪些审查任务", "审查进度"],
-    },
-    "download_file": {
-        "when_to_use": "用户需要下载合同文件或审查报告",
-        "examples": ["下载44号合同", "导出审查报告"],
-    },
-    "get_user_info": {
-        "when_to_use": "用户想查看自己的账号信息、个人资料",
-        "examples": ["我的信息是什么", "查看我的资料", "我的账号信息"],
-    },
-    "update_user_information": {
-        "when_to_use": "用户想修改个人信息",
-        "examples": ["更新我的信息", "修改密码", "更改邮箱"],
-    },
-    "get_store_path": {
-        "when_to_use": "用户询问文件存储路径、下载地址、保存位置等设置信息",
-        "examples": ["我的下载地址在哪？", "文件保存在哪里？", "查看存储路径设置", "我的上传路径是什么"],
-    },
-    "update_store_path": {
-        "when_to_use": "用户想修改文件存储路径、下载地址、保存位置等设置",
-        "examples": ["修改下载路径", "更改存储位置", "设置上传路径"],
-    },
-    "get_sys_information": {
-        "when_to_use": "用户询问系统功能如何使用（操作步骤、功能说明）",
-        "examples": ["如何上传合同？", "怎么删除合同？", "系统怎么用", "如何启动审查"],
-    },
-}
-
 # 错误处理提示
 ERROR_MESSAGES = {
     "tool_error": "抱歉，查询过程中出现了问题。让我直接为您解答：",

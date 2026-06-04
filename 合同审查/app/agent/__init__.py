@@ -53,7 +53,6 @@ __all__ = [
     "start_contract_review",
     # 提示模板
     "SYSTEM_PROMPT",
-    "TOOL_USAGE_GUIDE",
     "ERROR_MESSAGES",
     "create_chatbot_prompt",
 ]
